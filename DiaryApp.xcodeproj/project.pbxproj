@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		CE168C3825BC422400D665AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE168C3725BC422400D665AE /* AppDelegate.swift */; };
 		CE168C3A25BC422400D665AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE168C3925BC422400D665AE /* SceneDelegate.swift */; };
-		CE168C3C25BC422400D665AE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE168C3B25BC422400D665AE /* ViewController.swift */; };
-		CE168C3F25BC422400D665AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE168C3D25BC422400D665AE /* Main.storyboard */; };
+		CE168C3C25BC422400D665AE /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE168C3B25BC422400D665AE /* DateViewController.swift */; };
 		CE168C4125BC422400D665AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE168C4025BC422400D665AE /* Assets.xcassets */; };
 		CE168C4425BC422400D665AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE168C4225BC422400D665AE /* LaunchScreen.storyboard */; };
+		CE168C4F25BC439400D665AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE168C4E25BC439400D665AE /* Main.storyboard */; };
+		CE168C5325BC488D00D665AE /* DataTasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE168C5225BC488D00D665AE /* DataTasksTableViewCell.swift */; };
+		CE168C5825BC54DF00D665AE /* DataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE168C5725BC54DF00D665AE /* DataTask.swift */; };
+		CEB5739425BC61540077C0B0 /* CreateTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB5739325BC61540077C0B0 /* CreateTaskTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CE168C3425BC422400D665AE /* DiaryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE168C3725BC422400D665AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE168C3925BC422400D665AE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE168C3B25BC422400D665AE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CE168C3E25BC422400D665AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CE168C3B25BC422400D665AE /* DateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
 		CE168C4025BC422400D665AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE168C4325BC422400D665AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE168C4525BC422400D665AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE168C4E25BC439400D665AE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		CE168C5225BC488D00D665AE /* DataTasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTasksTableViewCell.swift; sourceTree = "<group>"; };
+		CE168C5725BC54DF00D665AE /* DataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTask.swift; sourceTree = "<group>"; };
+		CEB5739325BC61540077C0B0 /* CreateTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,50 @@
 		CE168C3625BC422400D665AE /* DiaryApp */ = {
 			isa = PBXGroup;
 			children = (
-				CE168C3725BC422400D665AE /* AppDelegate.swift */,
-				CE168C3925BC422400D665AE /* SceneDelegate.swift */,
-				CE168C3B25BC422400D665AE /* ViewController.swift */,
-				CE168C3D25BC422400D665AE /* Main.storyboard */,
-				CE168C4025BC422400D665AE /* Assets.xcassets */,
-				CE168C4225BC422400D665AE /* LaunchScreen.storyboard */,
-				CE168C4525BC422400D665AE /* Info.plist */,
+				CEB5739925BC66A20077C0B0 /* Supports */,
+				CEB5739825BC668F0077C0B0 /* iBuilder */,
+				CEB5739725BC66750077C0B0 /* Models */,
+				CEB5739625BC664A0077C0B0 /* Controllers */,
 			);
 			path = DiaryApp;
+			sourceTree = "<group>";
+		};
+		CEB5739625BC664A0077C0B0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE168C5225BC488D00D665AE /* DataTasksTableViewCell.swift */,
+				CE168C3B25BC422400D665AE /* DateViewController.swift */,
+				CEB5739325BC61540077C0B0 /* CreateTaskTableViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CEB5739725BC66750077C0B0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CE168C5725BC54DF00D665AE /* DataTask.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CEB5739825BC668F0077C0B0 /* iBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				CE168C4E25BC439400D665AE /* Main.storyboard */,
+				CE168C4225BC422400D665AE /* LaunchScreen.storyboard */,
+			);
+			path = iBuilder;
+			sourceTree = "<group>";
+		};
+		CEB5739925BC66A20077C0B0 /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				CE168C3725BC422400D665AE /* AppDelegate.swift */,
+				CE168C3925BC422400D665AE /* SceneDelegate.swift */,
+				CE168C4025BC422400D665AE /* Assets.xcassets */,
+				CE168C4525BC422400D665AE /* Info.plist */,
+			);
+			path = Supports;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,9 +165,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE168C4F25BC439400D665AE /* Main.storyboard in Resources */,
 				CE168C4425BC422400D665AE /* LaunchScreen.storyboard in Resources */,
 				CE168C4125BC422400D665AE /* Assets.xcassets in Resources */,
-				CE168C3F25BC422400D665AE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +178,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE168C3C25BC422400D665AE /* ViewController.swift in Sources */,
+				CE168C5825BC54DF00D665AE /* DataTask.swift in Sources */,
+				CE168C3C25BC422400D665AE /* DateViewController.swift in Sources */,
+				CE168C5325BC488D00D665AE /* DataTasksTableViewCell.swift in Sources */,
 				CE168C3825BC422400D665AE /* AppDelegate.swift in Sources */,
+				CEB5739425BC61540077C0B0 /* CreateTaskTableViewController.swift in Sources */,
 				CE168C3A25BC422400D665AE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,14 +190,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CE168C3D25BC422400D665AE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CE168C3E25BC422400D665AE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CE168C4225BC422400D665AE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -287,7 +323,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = DiaryApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/DiaryApp/Supports/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -295,7 +331,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.simbirsoft.DiaryApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -305,7 +341,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = DiaryApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/DiaryApp/Supports/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -313,7 +349,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.simbirsoft.DiaryApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
