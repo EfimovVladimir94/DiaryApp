@@ -9,12 +9,22 @@ import UIKit
 
 class CreateTaskViewController: UIViewController {
     
-    //TODO propery lazy
-    private var datePicker: UIDatePicker!
+    lazy var datePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .dateAndTime
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.addTarget(self, action: #selector(CreateTaskViewController.dateChanged(datePicker: )), for: .valueChanged)
+        return datePicker
+    }()
     private var datePickerTextField: UITextField!
     private var textFieldTaskName: UITextField!
     private var textFieldTaskDescription: UITextField!
-    private var taskImage: UIImageView!
+    private var taskImage: UIImageView = {
+        let taskImage = UIImageView()
+        taskImage.contentMode = .scaleAspectFill
+        taskImage.clipsToBounds = true
+        return taskImage
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,18 +34,17 @@ class CreateTaskViewController: UIViewController {
     private func initObjects() {
         let centrX = Int(self.view.center.x / 2) - 50
         let centrY = 0
-        self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveTask)), animated: true)
+        self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveTask)),
+            animated: true)
         self.navigationItem.setLeftBarButton(UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.cancelTask)), animated: true)
-        
         self.view.addSubview(createChooseImageButton(centrX: centrX, centrY: centrY))
         self.view.addSubview(taskNameTextField(centrX: centrX, centrY: centrY))
         self.view.addSubview(createDateField())
         self.view.addSubview(taskDescriptionTextField(centrX: centrX, centrY: centrY))
-        
     }
     
     private func createChooseImageButton(centrX: Int, centrY: Int) -> UIButton {
-        let saveImageButton: UIButton = UIButton(frame: CGRect(x: centrX, y: 100, width: 300, height: 50))
+        let saveImageButton: UIButton = UIButton(frame: CGRect(x: centrX, y: centrY + 100, width: 300, height: 50))
         saveImageButton.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         saveImageButton.setTitle("Upload new image", for: .normal)
         saveImageButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
@@ -60,11 +69,6 @@ class CreateTaskViewController: UIViewController {
         let centrY = 0
         datePickerTextField = UITextField(frame: CGRect(x: centrX, y: centrY + 260, width: 300, height: 50))
         configureTextField(textField: datePickerTextField, placeholderName: "date")
-        
-        datePicker = UIDatePicker()
-        datePicker?.datePickerMode = .dateAndTime
-        datePicker?.preferredDatePickerStyle = .wheels
-        datePicker?.addTarget(self, action: #selector(CreateTaskViewController.dateChanged(datePicker: )), for: .valueChanged)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CreateTaskViewController.viewTapped(gestureRecognizer:)))
         self.view.addGestureRecognizer(tapGesture)
         datePickerTextField?.inputView = datePicker
@@ -108,7 +112,6 @@ class CreateTaskViewController: UIViewController {
     }
     
     @objc private func saveTask(){
-        //Корректно???
         dismiss(animated: true)
     }
     
@@ -132,10 +135,7 @@ extension CreateTaskViewController: UIImagePickerControllerDelegate, UINavigatio
     
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        taskImage = UIImageView()
         taskImage.image = info[.editedImage] as? UIImage
-        taskImage.contentMode = .scaleAspectFill
-        taskImage.clipsToBounds = true
         dismiss(animated: true)
     }
 }
