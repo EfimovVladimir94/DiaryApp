@@ -118,7 +118,7 @@
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="4lU-hI-qrm">
                             <color key="tintColor" red="0.097462035720000006" green="0.46337980029999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
-                                <segue destination="LkI-Jl-fDD" kind="presentation" id="kKg-oc-IgX"/>
+                                <segue destination="uiE-iC-aqX" kind="presentation" identifier="createTask" id="W7U-68-VNu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -130,34 +130,21 @@
             </objects>
             <point key="canvasLocation" x="697.10144927536237" y="93.75"/>
         </scene>
-        <!--Create New Task-->
-        <scene sceneID="ScS-kn-BvN">
+        <!--Create Task View Controller-->
+        <scene sceneID="pC6-2G-mad">
             <objects>
-                <tableViewController id="LID-GW-MRD" customClass="CreateTaskTableViewController" customModule="DiaryApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="tlF-uN-HUE">
+                <viewController id="K5C-c6-2OI" customClass="CreateTaskViewController" customModule="DiaryApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bvg-f0-z8q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="nsQ-4F-bsc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="i4z-Ht-XQt">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i4z-Ht-XQt" id="Y60-qV-zsp">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="LID-GW-MRD" id="ZA6-Nl-NCJ"/>
-                            <outlet property="delegate" destination="LID-GW-MRD" id="Tqf-CM-0X9"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Create New Task" id="MJY-p3-Sx5"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2vq-Is-1oH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zZW-Ca-1jc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jFi-jz-dgl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2386.9565217391305" y="93.75"/>
+            <point key="canvasLocation" x="2258" y="94"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oBr-1r-7da">
@@ -178,22 +165,22 @@
             <point key="canvasLocation" x="-213.04347826086959" y="93.75"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="A16-Jd-3s3">
+        <scene sceneID="blV-Eg-3jP">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LkI-Jl-fDD" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uiE-iC-aqX" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dsg-oe-pju">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vSG-dO-KGO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="LID-GW-MRD" kind="relationship" relationship="rootViewController" id="6sK-nR-Ubc"/>
+                        <segue destination="K5C-c6-2OI" kind="relationship" relationship="rootViewController" id="VZQ-ma-Id9"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PHi-Wc-j23" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rYt-1u-YsJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1476.8115942028987" y="93.75"/>
+            <point key="canvasLocation" x="1457.9710144927537" y="93.75"/>
         </scene>
     </scenes>
     <resources>

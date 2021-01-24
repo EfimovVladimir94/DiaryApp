@@ -15,6 +15,7 @@
 		CE168C4F25BC439400D665AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE168C4E25BC439400D665AE /* Main.storyboard */; };
 		CE168C5325BC488D00D665AE /* DataTasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE168C5225BC488D00D665AE /* DataTasksTableViewCell.swift */; };
 		CE168C5825BC54DF00D665AE /* DataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE168C5725BC54DF00D665AE /* DataTask.swift */; };
+		CE93E0A925BC78AE006B531A /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE93E0A825BC78AE006B531A /* CreateTaskViewController.swift */; };
 		CEB5739425BC61540077C0B0 /* CreateTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB5739325BC61540077C0B0 /* CreateTaskTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		CE168C4E25BC439400D665AE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CE168C5225BC488D00D665AE /* DataTasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTasksTableViewCell.swift; sourceTree = "<group>"; };
 		CE168C5725BC54DF00D665AE /* DataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTask.swift; sourceTree = "<group>"; };
+		CE93E0A825BC78AE006B531A /* CreateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
 		CEB5739325BC61540077C0B0 /* CreateTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,12 +64,20 @@
 		CE168C3625BC422400D665AE /* DiaryApp */ = {
 			isa = PBXGroup;
 			children = (
+				CEB5739625BC664A0077C0B0 /* Controllers */,
+				CEB5739725BC66750077C0B0 /* Models */,
+				CE93E0AB25BC943D006B531A /* utils */,
 				CEB5739925BC66A20077C0B0 /* Supports */,
 				CEB5739825BC668F0077C0B0 /* iBuilder */,
-				CEB5739725BC66750077C0B0 /* Models */,
-				CEB5739625BC664A0077C0B0 /* Controllers */,
 			);
 			path = DiaryApp;
+			sourceTree = "<group>";
+		};
+		CE93E0AB25BC943D006B531A /* utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 		CEB5739625BC664A0077C0B0 /* Controllers */ = {
@@ -75,6 +85,7 @@
 			children = (
 				CE168C5225BC488D00D665AE /* DataTasksTableViewCell.swift */,
 				CE168C3B25BC422400D665AE /* DateViewController.swift */,
+				CE93E0A825BC78AE006B531A /* CreateTaskViewController.swift */,
 				CEB5739325BC61540077C0B0 /* CreateTaskTableViewController.swift */,
 			);
 			path = Controllers;
@@ -184,6 +195,7 @@
 				CE168C3825BC422400D665AE /* AppDelegate.swift in Sources */,
 				CEB5739425BC61540077C0B0 /* CreateTaskTableViewController.swift in Sources */,
 				CE168C3A25BC422400D665AE /* SceneDelegate.swift in Sources */,
+				CE93E0A925BC78AE006B531A /* CreateTaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
