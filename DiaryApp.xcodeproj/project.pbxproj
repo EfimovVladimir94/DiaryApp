@@ -64,18 +64,10 @@
 			children = (
 				CEB5739625BC664A0077C0B0 /* Controllers */,
 				CEB5739725BC66750077C0B0 /* Models */,
-				CE9AB86825BDBAD000473DA2 /* view */,
 				CEB5739925BC66A20077C0B0 /* Supports */,
 				CEB5739825BC668F0077C0B0 /* iBuilder */,
 			);
 			path = DiaryApp;
-			sourceTree = "<group>";
-		};
-		CE9AB86825BDBAD000473DA2 /* view */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = view;
 			sourceTree = "<group>";
 		};
 		CEB5739625BC664A0077C0B0 /* Controllers */ = {
