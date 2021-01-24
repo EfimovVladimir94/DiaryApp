@@ -9,6 +9,9 @@ import UIKit
 
 class CreateTaskViewController: UIViewController {
     
+    private var datePicker: UIDatePicker?
+    private var inputTextField: UITextField?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initObjects()
@@ -22,7 +25,7 @@ class CreateTaskViewController: UIViewController {
         
         self.view.addSubview(button(centrX: centrX, centrY: centrY))
         self.view.addSubview(textField(with: "task name", centrX: centrX, centrY: centrY))
-        self.view.addSubview(textField(with: "date", centrX: centrX, centrY: centrY))
+        self.view.addSubview(createDateField())
         self.view.addSubview(textField(with: "description", centrX: centrX, centrY: centrY))
         
     }
@@ -43,8 +46,6 @@ class CreateTaskViewController: UIViewController {
         switch placeholderName {
         case "task name":
         textField = UITextField(frame: CGRect(x: centrX, y: centrY + 180, width: 300, height: 50))
-        case "date":
-        textField = UITextField(frame: CGRect(x: centrX, y: centrY + 260, width: 300, height: 50))
         case "description":
         textField = UITextField(frame: CGRect(x: centrX, y: centrY + 340, width: 300, height: 50))
         default:
@@ -60,6 +61,40 @@ class CreateTaskViewController: UIViewController {
         return textField
     }
     
+    private func createDateField() -> UITextField {
+        //TODO double code
+        let centrX = Int(self.view.center.x / 2) - 50
+        let centrY = 0
+        inputTextField = UITextField(frame: CGRect(x: centrX, y: centrY + 260, width: 300, height: 50))
+        
+        inputTextField!.placeholder = "Enter date"
+        inputTextField!.font = UIFont.systemFont(ofSize: 20)
+        inputTextField!.keyboardType = .default
+        inputTextField!.borderStyle = UITextField.BorderStyle.roundedRect
+        inputTextField!.textColor = .black
+        inputTextField!.returnKeyType = UIReturnKeyType.done
+        inputTextField!.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        
+        datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .dateAndTime
+        datePicker?.preferredDatePickerStyle = .wheels
+        datePicker?.addTarget(self, action: #selector(CreateTaskViewController.dateChanged(datePicker: )), for: .valueChanged)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CreateTaskViewController.viewTapped(gestureRecognizer:)))
+        self.view.addGestureRecognizer(tapGesture)
+        inputTextField?.inputView = datePicker
+        return inputTextField!
+    }
+    
+    @objc private func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
+    @objc private func dateChanged(datePicker: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
+        inputTextField?.text = dateFormatter.string(from: datePicker.date)
+        view.endEditing(true)
+    }
     
     
     @objc private func onTapped() {
