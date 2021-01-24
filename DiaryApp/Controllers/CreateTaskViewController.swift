@@ -9,8 +9,11 @@ import UIKit
 
 class CreateTaskViewController: UIViewController {
     
-    private var datePicker: UIDatePicker?
-    private var inputTextField: UITextField?
+    private var datePicker: UIDatePicker!
+    private var inputTextField: UITextField!
+    private var nameTextField: UITextField!
+    private var descriptionTextField: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +23,13 @@ class CreateTaskViewController: UIViewController {
     private func initObjects() {
         let centrX = Int(self.view.center.x / 2) - 50
         let centrY = 0
-        self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .save, target: self, action: nil), animated: true)
-        self.navigationItem.setLeftBarButton(UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: nil), animated: true)
+        self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveTask)), animated: true)
+        self.navigationItem.setLeftBarButton(UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.cancelTask)), animated: true)
         
         self.view.addSubview(button(centrX: centrX, centrY: centrY))
-        self.view.addSubview(textField(with: "task name", centrX: centrX, centrY: centrY))
+        self.view.addSubview(taskNameTextField(centrX: centrX, centrY: centrY))
         self.view.addSubview(createDateField())
-        self.view.addSubview(textField(with: "description", centrX: centrX, centrY: centrY))
+        self.view.addSubview(taskDescriptionTextField(centrX: centrX, centrY: centrY))
         
     }
     
@@ -40,25 +43,16 @@ class CreateTaskViewController: UIViewController {
         return saveImageButton
     }
     
-    private func textField(with placeholderName: String, centrX: Int, centrY: Int) -> UITextField {
-        let textField: UITextField
-        
-        switch placeholderName {
-        case "task name":
-        textField = UITextField(frame: CGRect(x: centrX, y: centrY + 180, width: 300, height: 50))
-        case "description":
-        textField = UITextField(frame: CGRect(x: centrX, y: centrY + 340, width: 300, height: 50))
-        default:
-            textField = UITextField(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        }
-        textField.placeholder = "Enter \(placeholderName)"
-        textField.font = UIFont.systemFont(ofSize: 20)
-        textField.keyboardType = .default
-        textField.borderStyle = UITextField.BorderStyle.roundedRect
-        textField.textColor = .black
-        textField.returnKeyType = UIReturnKeyType.done
-        textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-        return textField
+    private func taskNameTextField(centrX: Int, centrY: Int) -> UITextField {
+        nameTextField = UITextField(frame: CGRect(x: centrX, y: centrY + 180, width: 300, height: 50))
+        configureTextField(textField: nameTextField, placeholderName: "task name")
+        return nameTextField
+    }
+    
+    private func taskDescriptionTextField(centrX: Int, centrY: Int) -> UITextField {
+        descriptionTextField = UITextField(frame: CGRect(x: centrX, y: centrY + 340, width: 300, height: 50))
+        configureTextField(textField: descriptionTextField, placeholderName: "description")
+        return descriptionTextField
     }
     
     private func createDateField() -> UITextField {
@@ -66,14 +60,7 @@ class CreateTaskViewController: UIViewController {
         let centrX = Int(self.view.center.x / 2) - 50
         let centrY = 0
         inputTextField = UITextField(frame: CGRect(x: centrX, y: centrY + 260, width: 300, height: 50))
-        
-        inputTextField!.placeholder = "Enter date"
-        inputTextField!.font = UIFont.systemFont(ofSize: 20)
-        inputTextField!.keyboardType = .default
-        inputTextField!.borderStyle = UITextField.BorderStyle.roundedRect
-        inputTextField!.textColor = .black
-        inputTextField!.returnKeyType = UIReturnKeyType.done
-        inputTextField!.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        configureTextField(textField: inputTextField, placeholderName: "Enter date")
         
         datePicker = UIDatePicker()
         datePicker?.datePickerMode = .dateAndTime
@@ -83,6 +70,15 @@ class CreateTaskViewController: UIViewController {
         self.view.addGestureRecognizer(tapGesture)
         inputTextField?.inputView = datePicker
         return inputTextField!
+    }
+    private func configureTextField(textField: UITextField, placeholderName: String) {
+        textField.placeholder = "Enter \(placeholderName)"
+        textField.font = UIFont.systemFont(ofSize: 20)
+        textField.keyboardType = .default
+        textField.borderStyle = UITextField.BorderStyle.roundedRect
+        textField.textColor = .black
+        textField.returnKeyType = UIReturnKeyType.done
+        textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
     }
     
     @objc private func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
@@ -112,7 +108,15 @@ class CreateTaskViewController: UIViewController {
         actionSheet.addAction(cancel)
         present(actionSheet, animated: true)
     }
-
+    
+    @objc private func saveTask(){
+        print("save Task")
+    }
+    
+    @objc private func cancelTask(){
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 extension CreateTaskViewController {

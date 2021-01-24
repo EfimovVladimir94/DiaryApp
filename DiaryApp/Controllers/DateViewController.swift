@@ -9,7 +9,7 @@ import UIKit
 
 class DateViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let tasks = [DataTask(name: "task1", date: "24.11.1994", description: "что то сделать надо", image: "task1")]
+    let tasks = [DataTask(name: "task1", date: "24.11.1994", description: "что то сделать надо", image: UIImage(named: "task1"))]
 
     @IBOutlet var datePicker: UIDatePicker!
     
@@ -25,7 +25,7 @@ class DateViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! DataTasksTableViewCell
         cell.nameLabel.text = tasks[indexPath.row].name
-        cell.imageOfPlace.image = UIImage(named: tasks[indexPath.row].image)
+        cell.imageOfPlace.image = UIImage(named: tasks[indexPath.row].name)
         cell.dateLabel.text = tasks[indexPath.row].date
         cell.descriptionLabel.text = tasks[indexPath.row].description
         cell.imageOfPlace.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2

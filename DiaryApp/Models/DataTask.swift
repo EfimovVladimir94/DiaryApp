@@ -5,11 +5,11 @@
 //  Created by Пользователь on 23.01.2021.
 //
 
-import Foundation
+import UIKit
 
 struct DataTask {
     var name: String
     var date: String
-    var description: String
-    var image: String
+    var description: String?
+    var image: UIImage?
 }
