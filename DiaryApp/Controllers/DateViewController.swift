@@ -7,9 +7,10 @@
 
 import UIKit
 import RealmSwift
+import Firebase
 
 class DateViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     @IBOutlet var tableView: UITableView!
     @IBOutlet var datePicker: UIDatePicker!
     lazy var refreshControl: UIRefreshControl = {
@@ -49,13 +50,26 @@ class DateViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewWillAppear(_ animated: Bool) {
         tasks = realm.objects(DataTask.self)
+        fetchDataTasks()
     }
     
     @objc func handleRefresh() {
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
+    
+    private func fetchDataTasks() {
+        Database.database().reference()
+            .child("tasks")
+            .observe(.childAdded) { (snapshot) in
+                guard let taskData = snapshot.value as? [String: Any] else { return }
+                let dataTask = DataTaskFir(data: taskData)
+                print("----------DATA TASK----------: \(dataTask!.name) + \(dataTask!.descriptionTask!) + \(dataTask!.date)")
+            }
 
+                
+    }
+    
     @IBAction func changeDate(_ sender: UIDatePicker) {
     }
     
