@@ -83,7 +83,7 @@
                                         <connections>
                                             <outlet property="dateLabel" destination="xqk-uS-SkL" id="jeK-dX-tah"/>
                                             <outlet property="descriptionLabel" destination="Jwv-sL-eYL" id="NT9-8C-z7b"/>
-                                            <outlet property="imageOfPlace" destination="IHw-6f-WaJ" id="dKg-h9-Jrq"/>
+                                            <outlet property="imageOfTasks" destination="IHw-6f-WaJ" id="dKg-h9-Jrq"/>
                                             <outlet property="nameLabel" destination="5g2-CT-VO4" id="NhK-UH-E4f"/>
                                         </connections>
                                     </tableViewCell>
@@ -124,6 +124,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="datePicker" destination="dOr-JJ-Lg2" id="71h-3e-cby"/>
+                        <outlet property="tableView" destination="uty-Bv-8bu" id="XsX-ss-xdG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

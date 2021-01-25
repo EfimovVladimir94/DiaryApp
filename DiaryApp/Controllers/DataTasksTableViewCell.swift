@@ -12,7 +12,7 @@ class DataTasksTableViewCell: UITableViewCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
-    @IBOutlet var imageOfPlace: UIImageView!
+    @IBOutlet var imageOfTasks: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

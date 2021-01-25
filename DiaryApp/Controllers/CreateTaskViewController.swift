@@ -8,7 +8,7 @@
 import UIKit
 
 class CreateTaskViewController: UIViewController {
-    
+
     lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .dateAndTime
@@ -25,13 +25,14 @@ class CreateTaskViewController: UIViewController {
         taskImage.clipsToBounds = true
         return taskImage
     }()
+    public var completionHandler: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initObjects()
+        initInterfaceObjects()
     }
     
-    private func initObjects() {
+    private func initInterfaceObjects() {
         let centrX = Int(self.view.center.x / 2) - 50
         let centrY = 0
         self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveTask)),
@@ -111,14 +112,20 @@ class CreateTaskViewController: UIViewController {
         present(actionSheet, animated: true)
     }
     
-    @objc private func saveTask(){
+    @objc func saveTask() {
+            let task = DataTask(name: textFieldTaskName.text!,
+                            date: datePickerTextField.text!,
+                            descriptionTask: textFieldTaskDescription.text!,
+                            imageData: taskImage.image?.pngData())
+            StorageManager.saveObject(task)
+        self.completionHandler?()
         dismiss(animated: true)
+        print("------------task \(task) saved----------")
     }
     
     @objc private func cancelTask(){
         dismiss(animated: true)
     }
-    
 }
 
 extension CreateTaskViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
