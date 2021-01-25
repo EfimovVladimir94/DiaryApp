@@ -8,7 +8,7 @@
 import UIKit
 
 class CreateTaskViewController: UIViewController {
-
+    
     lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .dateAndTime
@@ -25,7 +25,6 @@ class CreateTaskViewController: UIViewController {
         taskImage.clipsToBounds = true
         return taskImage
     }()
-    public var completionHandler: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +35,7 @@ class CreateTaskViewController: UIViewController {
         let centrX = Int(self.view.center.x / 2) - 50
         let centrY = 0
         self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveTask)),
-            animated: true)
+                                              animated: true)
         self.navigationItem.setLeftBarButton(UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.cancelTask)), animated: true)
         self.view.addSubview(createChooseImageButton(centrX: centrX, centrY: centrY))
         self.view.addSubview(taskNameTextField(centrX: centrX, centrY: centrY))
@@ -113,14 +112,19 @@ class CreateTaskViewController: UIViewController {
     }
     
     @objc func saveTask() {
-            let task = DataTask(name: textFieldTaskName.text!,
+        let task = DataTask(name: textFieldTaskName.text!,
                             date: datePickerTextField.text!,
                             descriptionTask: textFieldTaskDescription.text!,
                             imageData: taskImage.image?.pngData())
-            StorageManager.saveObject(task)
-        self.completionHandler?()
+        let taskFir = DataTaskFir(name: textFieldTaskName.text!,
+                                  date: datePickerTextField.text!,
+                                  descriptionTask: textFieldTaskDescription.text!)
+        //к сожалению не удалось реализовать сохранение image в бд
+//                                  imageData: taskImage.image?.pngData())
+        StorageManager.saveObjectIntoRealm(task)
+        StorageManager.saveObjectIntoFire(taskFir)
         dismiss(animated: true)
-        print("------------task \(task) saved----------")
+        print("----------task \(task) saved----------")
     }
     
     @objc private func cancelTask(){
