@@ -12,10 +12,18 @@ class DateViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     @IBOutlet var tableView: UITableView!
     @IBOutlet var datePicker: UIDatePicker!
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(DateViewController.handleRefresh), for: .valueChanged)
+        refreshControl.tintColor = UIColor.gray
+        return refreshControl
+    }()
+    
     var tasks: Results<DataTask>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.addSubview(self.refreshControl)
     }
     
     //MARK: - Table view data source
@@ -41,6 +49,11 @@ class DateViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewWillAppear(_ animated: Bool) {
         tasks = realm.objects(DataTask.self)
+    }
+    
+    @objc func handleRefresh() {
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 
     @IBAction func changeDate(_ sender: UIDatePicker) {
