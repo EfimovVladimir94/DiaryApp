@@ -114,6 +114,13 @@ class CreateTaskViewController: UIViewController {
     }
     
     @objc func saveTask() {
+        
+        if (textFieldTaskName.text == "" &&
+            datePickerTextField.text == "") {
+            alertFields()
+            return
+        }
+        
         let task = DataTask(name: textFieldTaskName.text!,
                             date: datePickerTextField.text!,
                             descriptionTask: textFieldTaskDescription.text!,
@@ -150,7 +157,7 @@ class CreateTaskViewController: UIViewController {
                 }
             } else {
                 DispatchQueue.main.async {
-                    self.alert()
+                    self.alertConnection()
                     print("internet inactive")
                 }
             }
@@ -162,11 +169,19 @@ class CreateTaskViewController: UIViewController {
         
     }
     
-    private func alert() {
+    private func alertConnection() {
         let alert = UIAlertController(title: "internet connection", message: "No internet connection, the task will be saved when connected to the internet", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okAction)
         self.present(alert, animated: true)
+    }
+    
+    private func alertFields() {
+        let alert = UIAlertController(title: "", message: "Enter name and date feilds.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        self.present(alert, animated: true)
+        return
     }
     
 }
