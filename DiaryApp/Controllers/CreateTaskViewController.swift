@@ -163,7 +163,7 @@ class CreateTaskViewController: UIViewController {
     }
     
     private func alert() {
-        let alert = UIAlertController(title: "internet connect", message: "No internet connection, task will not save in DB", preferredStyle: .alert)
+        let alert = UIAlertController(title: "internet connection", message: "No internet connection, the task will be saved when connected to the internet", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okAction)
         self.present(alert, animated: true)
