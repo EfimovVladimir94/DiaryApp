@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Network
 
 class CreateTaskViewController: UIViewController {
     
@@ -16,7 +17,6 @@ class CreateTaskViewController: UIViewController {
         datePicker.addTarget(self, action: #selector(CreateTaskViewController.dateChanged(datePicker: )), for: .valueChanged)
         return datePicker
     }()
-    lazy var reachability = ReachabilityHandler()
     private var datePickerTextField: UITextField!
     private var textFieldTaskName: UITextField!
     private var textFieldTaskDescription: UITextField!
@@ -29,8 +29,7 @@ class CreateTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var connect = reachability.connect
-        checkConnect(online: connect)
+        monitorNetwork()
         initInterfaceObjects()
     }
     
@@ -126,9 +125,8 @@ class CreateTaskViewController: UIViewController {
         //                                  imageData: taskImage.image?.pngData())
         if checkIfExists(date: task.date) {
             StorageManager.saveObjectIntoRealm(task)
-            if reachability.connect {
-                StorageManager.saveObjectIntoFire(taskFir)
-            }
+            StorageManager.saveObjectIntoFire(taskFir)
+            
         }
         dismiss(animated: true)
         print("----------task \(task) saved----------")
@@ -143,12 +141,34 @@ class CreateTaskViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func checkConnect(online: Bool) {
-        let alert = UIAlertController(title: "internet connect", message: "No internet connection task will not save in DB", preferredStyle: .alert)
+    private func monitorNetwork() {
+        let monitor = NWPathMonitor()
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                DispatchQueue.main.async {
+                    print("internet active")
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.alert()
+                    print("internet inactive")
+                }
+            }
+        }
+        
+        let queue = DispatchQueue(label: "Network")
+        monitor.start(queue: queue)
+        
+        
+    }
+    
+    private func alert() {
+        let alert = UIAlertController(title: "internet connect", message: "No internet connection, task will not save in DB", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okAction)
         self.present(alert, animated: true)
     }
+    
 }
 
 extension CreateTaskViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
