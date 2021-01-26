@@ -85,6 +85,7 @@
                                             <outlet property="descriptionLabel" destination="Jwv-sL-eYL" id="NT9-8C-z7b"/>
                                             <outlet property="imageOfTasks" destination="IHw-6f-WaJ" id="dKg-h9-Jrq"/>
                                             <outlet property="nameLabel" destination="5g2-CT-VO4" id="NhK-UH-E4f"/>
+                                            <segue destination="ENF-bz-sEH" kind="show" identifier="showDetails" id="GG0-SR-Ojt"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -164,6 +165,70 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oy3-Qd-wQF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-213.04347826086959" y="93.75"/>
+        </scene>
+        <!--Details View Controller-->
+        <scene sceneID="v2f-cN-KPt">
+            <objects>
+                <viewController id="ENF-bz-sEH" customClass="DetailsViewController" customModule="DiaryApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RIc-ZP-k8B">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HlT-w8-NgB">
+                                <rect key="frame" x="0.0" y="88" width="414" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="5mu-LU-Lw1"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUe-r3-xb5">
+                                <rect key="frame" x="30" y="408" width="354" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LuG-es-YWW">
+                                <rect key="frame" x="30" y="438" width="354" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2u-iu-DVR">
+                                <rect key="frame" x="30" y="468" width="354" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cud-Mf-RTd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RUe-r3-xb5" firstAttribute="leading" secondItem="cud-Mf-RTd" secondAttribute="leading" constant="30" id="72l-zy-brj"/>
+                            <constraint firstItem="LuG-es-YWW" firstAttribute="width" secondItem="RUe-r3-xb5" secondAttribute="width" id="9Ia-7H-hBm"/>
+                            <constraint firstItem="j2u-iu-DVR" firstAttribute="leading" secondItem="cud-Mf-RTd" secondAttribute="leading" constant="30" id="AB7-Wg-cTK"/>
+                            <constraint firstItem="LuG-es-YWW" firstAttribute="top" secondItem="RUe-r3-xb5" secondAttribute="bottom" constant="30" id="DRA-1G-RYo"/>
+                            <constraint firstItem="HlT-w8-NgB" firstAttribute="top" secondItem="cud-Mf-RTd" secondAttribute="top" id="GCj-Ic-2oy"/>
+                            <constraint firstItem="LuG-es-YWW" firstAttribute="height" secondItem="RUe-r3-xb5" secondAttribute="height" id="Xti-OR-O9Y"/>
+                            <constraint firstItem="LuG-es-YWW" firstAttribute="leading" secondItem="cud-Mf-RTd" secondAttribute="leading" constant="30" id="aSN-7d-DKh"/>
+                            <constraint firstItem="j2u-iu-DVR" firstAttribute="width" secondItem="RUe-r3-xb5" secondAttribute="width" id="e1m-s8-fgg"/>
+                            <constraint firstItem="HlT-w8-NgB" firstAttribute="trailing" secondItem="cud-Mf-RTd" secondAttribute="trailing" id="gGv-iB-s5A"/>
+                            <constraint firstItem="cud-Mf-RTd" firstAttribute="trailing" secondItem="RUe-r3-xb5" secondAttribute="trailing" constant="30" id="kDH-fo-NtJ"/>
+                            <constraint firstItem="HlT-w8-NgB" firstAttribute="leading" secondItem="cud-Mf-RTd" secondAttribute="leading" id="rHa-8x-IXA"/>
+                            <constraint firstItem="j2u-iu-DVR" firstAttribute="height" secondItem="RUe-r3-xb5" secondAttribute="height" id="szZ-ss-aod"/>
+                            <constraint firstItem="RUe-r3-xb5" firstAttribute="top" secondItem="HlT-w8-NgB" secondAttribute="bottom" constant="20" id="uTx-VL-fVm"/>
+                            <constraint firstItem="j2u-iu-DVR" firstAttribute="top" secondItem="LuG-es-YWW" secondAttribute="bottom" constant="30" id="vNh-yl-u18"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="iZa-nQ-13t"/>
+                    <connections>
+                        <outlet property="dateFieldTextField" destination="LuG-es-YWW" id="H2c-tR-SPV"/>
+                        <outlet property="descriptionTextField" destination="j2u-iu-DVR" id="BrA-hg-0pu"/>
+                        <outlet property="imageView" destination="HlT-w8-NgB" id="A9E-h9-dZe"/>
+                        <outlet property="taskNameTextField" destination="RUe-r3-xb5" id="uxq-5Q-5PK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4k6-RO-ov4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1457.9710144927537" y="822.99107142857144"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="blV-Eg-3jP">

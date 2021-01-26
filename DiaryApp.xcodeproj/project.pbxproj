@@ -21,6 +21,7 @@
 		CE9AB89625BDEBDC00473DA2 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AB89525BDEBDC00473DA2 /* StorageManager.swift */; };
 		CE9AB8A225BEF38A00473DA2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE9AB8A125BEF38A00473DA2 /* GoogleService-Info.plist */; };
 		CE9AB8F525BF10EF00473DA2 /* DataTaskFir.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AB8F425BF10EF00473DA2 /* DataTaskFir.swift */; };
+		CEAD53E425C0BC4300FC2D98 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD53E325C0BC4300FC2D98 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		CE9AB89525BDEBDC00473DA2 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		CE9AB8A125BEF38A00473DA2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE9AB8F425BF10EF00473DA2 /* DataTaskFir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTaskFir.swift; sourceTree = "<group>"; };
+		CEAD53E325C0BC4300FC2D98 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		DF7512E3A6774776F05C9A20 /* Pods-DiaryApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiaryApp.debug.xcconfig"; path = "Target Support Files/Pods-DiaryApp/Pods-DiaryApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +119,7 @@
 				CE168C5225BC488D00D665AE /* DataTasksTableViewCell.swift */,
 				CE168C3B25BC422400D665AE /* DateViewController.swift */,
 				CE93E0A825BC78AE006B531A /* CreateTaskViewController.swift */,
+				CEAD53E325C0BC4300FC2D98 /* DetailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				CE168C3825BC422400D665AE /* AppDelegate.swift in Sources */,
 				CE168C3A25BC422400D665AE /* SceneDelegate.swift in Sources */,
 				CE93E0A925BC78AE006B531A /* CreateTaskViewController.swift in Sources */,
+				CEAD53E425C0BC4300FC2D98 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

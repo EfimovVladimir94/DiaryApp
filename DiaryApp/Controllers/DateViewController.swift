@@ -25,6 +25,7 @@ class DateViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var tasksOfRealm: Results<DataTask>!
     var tasksOfFirebase = Set<DataTask>()
     var findDate: String?
+    var taskDetails: DataTask?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,7 @@ class DateViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! DataTasksTableViewCell
         let taskByIndexPath = taskResult[indexPath.row]
+        
         cell.nameLabel.text = taskByIndexPath.name
         cell.dateLabel.text = taskByIndexPath.date
         cell.descriptionLabel.text = taskByIndexPath.descriptionTask
@@ -108,6 +110,15 @@ class DateViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy HH"
         findDate = dateFormatter.string(from: sender.date)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetails" {
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            let task = taskResult[indexPath.row]
+            let newTaskVC = segue.destination as! DetailsViewController
+            newTaskVC.currentTask = task
+        }
     }
 }
 
