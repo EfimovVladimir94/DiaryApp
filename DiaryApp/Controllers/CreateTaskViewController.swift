@@ -121,10 +121,17 @@ class CreateTaskViewController: UIViewController {
                                   descriptionTask: textFieldTaskDescription.text!)
         //к сожалению не удалось реализовать сохранение image в бд
 //                                  imageData: taskImage.image?.pngData())
-        StorageManager.saveObjectIntoRealm(task)
-        StorageManager.saveObjectIntoFire(taskFir)
+        if checkIfExists(date: task.date) {
+            StorageManager.saveObjectIntoRealm(task)
+            StorageManager.saveObjectIntoFire(taskFir)
+        }
         dismiss(animated: true)
         print("----------task \(task) saved----------")
+    }
+    
+    private func checkIfExists(date: String) -> Bool {
+        let object = realm.objects(DataTask.self).first(where: { $0.date == date })
+        return object == nil
     }
     
     @objc private func cancelTask(){

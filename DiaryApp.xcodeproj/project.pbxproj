@@ -16,6 +16,7 @@
 		CE168C4F25BC439400D665AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE168C4E25BC439400D665AE /* Main.storyboard */; };
 		CE168C5325BC488D00D665AE /* DataTasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE168C5225BC488D00D665AE /* DataTasksTableViewCell.swift */; };
 		CE168C5825BC54DF00D665AE /* DataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE168C5725BC54DF00D665AE /* DataTask.swift */; };
+		CE478D8725C000B70051047F /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE478D8625C000B70051047F /* Mapper.swift */; };
 		CE93E0A925BC78AE006B531A /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE93E0A825BC78AE006B531A /* CreateTaskViewController.swift */; };
 		CE9AB89625BDEBDC00473DA2 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AB89525BDEBDC00473DA2 /* StorageManager.swift */; };
 		CE9AB8A225BEF38A00473DA2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE9AB8A125BEF38A00473DA2 /* GoogleService-Info.plist */; };
@@ -35,6 +36,7 @@
 		CE168C4E25BC439400D665AE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CE168C5225BC488D00D665AE /* DataTasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTasksTableViewCell.swift; sourceTree = "<group>"; };
 		CE168C5725BC54DF00D665AE /* DataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTask.swift; sourceTree = "<group>"; };
+		CE478D8625C000B70051047F /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		CE93E0A825BC78AE006B531A /* CreateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
 		CE9AB89525BDEBDC00473DA2 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		CE9AB8A125BEF38A00473DA2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 		CE168C3625BC422400D665AE /* DiaryApp */ = {
 			isa = PBXGroup;
 			children = (
+				CE478D8025BF5F2D0051047F /* utils */,
 				CEB5739725BC66750077C0B0 /* Models */,
 				CEB5739625BC664A0077C0B0 /* Controllers */,
 				CE9AB89425BDEBA500473DA2 /* Networking */,
@@ -90,6 +93,14 @@
 				CEB5739825BC668F0077C0B0 /* iBuilder */,
 			);
 			path = DiaryApp;
+			sourceTree = "<group>";
+		};
+		CE478D8025BF5F2D0051047F /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				CE478D8625C000B70051047F /* Mapper.swift */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 		CE9AB89425BDEBA500473DA2 /* Networking */ = {
@@ -268,6 +279,7 @@
 				CE168C3C25BC422400D665AE /* DateViewController.swift in Sources */,
 				CE9AB8F525BF10EF00473DA2 /* DataTaskFir.swift in Sources */,
 				CE168C5325BC488D00D665AE /* DataTasksTableViewCell.swift in Sources */,
+				CE478D8725C000B70051047F /* Mapper.swift in Sources */,
 				CE9AB89625BDEBDC00473DA2 /* StorageManager.swift in Sources */,
 				CE168C3825BC422400D665AE /* AppDelegate.swift in Sources */,
 				CE168C3A25BC422400D665AE /* SceneDelegate.swift in Sources */,

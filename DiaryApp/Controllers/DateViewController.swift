@@ -20,21 +20,24 @@ class DateViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return refreshControl
     }()
     
-    var tasks: Results<DataTask>!
+    var tasksOfRealm: Results<DataTask>!
+    var tasksOfFirebase = Set<DataTask>()
+    var findDate: String!
     
     override func viewDidLoad() {
+        datePicker.addTarget(self, action: #selector(DateViewController.dateChanged(datePicker: )), for: .valueChanged)
         super.viewDidLoad()
         self.tableView.addSubview(self.refreshControl)
     }
     
     //MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.isEmpty ? 0 : tasks.count
+        return tasksOfRealm.isEmpty ? 0 : tasksOfRealm.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! DataTasksTableViewCell
-        let taskByIndexPath = tasks[indexPath.row]
+        let taskByIndexPath = tasksOfRealm[indexPath.row]
         cell.nameLabel.text = taskByIndexPath.name
         cell.dateLabel.text = taskByIndexPath.date
         cell.descriptionLabel.text = taskByIndexPath.descriptionTask
@@ -49,12 +52,16 @@ class DateViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tasks = realm.objects(DataTask.self)
+        //хочу сделать поиск по дате если есть то заполняем uniqueTasks. Далее проверка если у кого то нет элемента? то сейвить
+        tasksOfRealm = realm.objects(DataTask.self)
         fetchDataTasks()
+        
     }
     
     @objc func handleRefresh() {
         self.tableView.reloadData()
+        synchronizationWithFirebase()
+        print("----result------\(tasksOfFirebase)--------")
         refreshControl.endRefreshing()
     }
     
@@ -64,15 +71,30 @@ class DateViewController: UIViewController, UITableViewDataSource, UITableViewDe
             .observe(.childAdded) { (snapshot) in
                 guard let taskData = snapshot.value as? [String: Any] else { return }
                 let dataTask = DataTaskFir(data: taskData)
-                print("----------DATA TASK----------: \(dataTask!.name) + \(dataTask!.descriptionTask!) + \(dataTask!.date)")
+                if dataTask != nil {
+                    self.tasksOfFirebase.insert(Mapper.dataTaskFirToDataTask(dataTask: dataTask!))
+                    
+                    print("----------DATA TASK----------: \(dataTask!.name) + \(dataTask!.descriptionTask!) + \(dataTask!.date)")
+                }
             }
-
-                
     }
     
-    @IBAction func changeDate(_ sender: UIDatePicker) {
+    private func synchronizationWithFirebase() {
+        tasksOfRealm.forEach { dataTask in
+            tasksOfFirebase.first(where: { $0.date == dataTask.date
+                let newData = DataTaskFir(name: dataTask.name, date: dataTask.date, descriptionTask: dataTask.descriptionTask)
+                StorageManager.saveObjectIntoFire(newData)
+                return true
+            })
+        }
     }
     
+    @objc private func dateChanged(datePicker: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
+        self.findDate = dateFormatter.string(from: datePicker.date)
+        view.endEditing(true)
+    }
 }
 
 

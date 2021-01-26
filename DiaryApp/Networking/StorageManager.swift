@@ -20,7 +20,7 @@ class StorageManager {
     
     static func saveObjectIntoFire(_ task: DataTaskFir) {
         let data = ["name": task.name, "date": task.date, "description": task.descriptionTask]
-        Database.database().reference().child("tasks").child(task.name).updateChildValues(data) { (error, _) in
+        Database.database().reference().child("tasks").child(task.date).updateChildValues(data) { (error, _) in
             if let error = error {
                 print("error data save into Firebase")
                 return

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DataTaskFir {
+class DataTaskFir: NSObject {
     var name = ""
     var date: String = ""
     var descriptionTask: String?
