@@ -16,6 +16,7 @@ class CreateTaskViewController: UIViewController {
         datePicker.addTarget(self, action: #selector(CreateTaskViewController.dateChanged(datePicker: )), for: .valueChanged)
         return datePicker
     }()
+    lazy var reachability = ReachabilityHandler()
     private var datePickerTextField: UITextField!
     private var textFieldTaskName: UITextField!
     private var textFieldTaskDescription: UITextField!
@@ -28,6 +29,8 @@ class CreateTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var connect = reachability.connect
+        checkConnect(online: connect)
         initInterfaceObjects()
     }
     
@@ -118,12 +121,14 @@ class CreateTaskViewController: UIViewController {
                             imageData: taskImage.image?.pngData())
         let taskFir = DataTaskFir(name: textFieldTaskName.text!,
                                   date: datePickerTextField.text!,
-                                  descriptionTask: textFieldTaskDescription.text!)
+                                  descriptionTask: textFieldTaskDescription.text)
         //к сожалению не удалось реализовать сохранение image в бд
-//                                  imageData: taskImage.image?.pngData())
+        //                                  imageData: taskImage.image?.pngData())
         if checkIfExists(date: task.date) {
             StorageManager.saveObjectIntoRealm(task)
-            StorageManager.saveObjectIntoFire(taskFir)
+            if reachability.connect {
+                StorageManager.saveObjectIntoFire(taskFir)
+            }
         }
         dismiss(animated: true)
         print("----------task \(task) saved----------")
@@ -136,6 +141,13 @@ class CreateTaskViewController: UIViewController {
     
     @objc private func cancelTask(){
         dismiss(animated: true)
+    }
+    
+    private func checkConnect(online: Bool) {
+        let alert = UIAlertController(title: "internet connect", message: "No internet connection task will not save in DB", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        self.present(alert, animated: true)
     }
 }
 

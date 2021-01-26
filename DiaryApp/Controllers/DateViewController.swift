@@ -25,9 +25,11 @@ class DateViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var tasksOfRealm: Results<DataTask>!
     var tasksOfFirebase = Set<DataTask>()
     var findDate: String?
+    lazy var reachability = ReachabilityHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var _ = reachability.connect
         self.tableView.addSubview(self.refreshControl)
     }
     
@@ -71,18 +73,21 @@ class DateViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     private func fetchDataTasks() {
-        Database.database().reference()
-            .child("tasks")
-            .observe(.childAdded) { (snapshot) in
-                guard let taskData = snapshot.value as? [String: Any] else { return }
-                let dataTask = DataTaskFir(data: taskData)
-                if dataTask != nil {
-                    self.tasksOfFirebase.insert(Mapper.dataTaskFirToDataTask(dataTask: dataTask!))
-                    
-                    print("----------DATA TASK----------: \(dataTask!.name) + \(dataTask!.descriptionTask!) + \(dataTask!.date)")
+        if reachability.connect {
+            Database.database().reference()
+                .child("tasks")
+                .observe(.childAdded) { (snapshot) in
+                    guard let taskData = snapshot.value as? [String: Any] else { return }
+                    let dataTask = DataTaskFir(data: taskData)
+                    if dataTask != nil {
+                        self.tasksOfFirebase.insert(Mapper.dataTaskFirToDataTask(dataTask: dataTask!))
+                        
+                        print("----------DATA TASK----------: \(dataTask!.name) + \(dataTask!.descriptionTask!) + \(dataTask!.date)")
+                    }
                 }
-            }
+        }
     }
+    
     
     private func synchronizationWithFirebase() {
         tasksOfRealm.forEach { dataTask in
