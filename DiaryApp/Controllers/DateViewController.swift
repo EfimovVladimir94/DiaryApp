@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 import Firebase
 
-class DateViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class DateViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var datePicker: UIDatePicker!
@@ -20,7 +20,7 @@ class DateViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return refreshControl
     }()
     
-    var taskResult = [DataTask]()
+    var taskResult: [DataTask] = []
     var uniqueTaskResult = Set<DataTask>()
     var tasksOfRealm: Results<DataTask>!
     var tasksOfFirebase = Set<DataTask>()
@@ -29,15 +29,28 @@ class DateViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.addSubview(self.refreshControl)
+        tableView.addSubview(self.refreshControl)
     }
     
     //MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskResult.isEmpty ? 0 : taskResult.count
+        return taskResult.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return configureCell(tableView: tableView, indexPath: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tasksOfRealm = realm.objects(DataTask.self)
+        fetchDataTasks()
+    }
+    
+    private func configureCell(tableView: UITableView, indexPath: IndexPath) -> DataTasksTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! DataTasksTableViewCell
         let taskByIndexPath = taskResult[indexPath.row]
         
@@ -52,23 +65,13 @@ class DateViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        tasksOfRealm = realm.objects(DataTask.self)
-        fetchDataTasks()
-        
-    }
-    
     @objc func handleRefresh() {
         synchronizationWithFirebase()
         taskResult.removeAll()
         uniqueTaskResult.removeAll()
         fetchTaskByDate()
         taskResult = Array(uniqueTaskResult)
-        self.tableView.reloadData()
+        tableView.reloadData()
         refreshControl.endRefreshing()
     }
     
@@ -120,4 +123,6 @@ class DateViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 }
 
-
+extension DateViewController: UITableViewDataSource, UITableViewDelegate {
+    
+}

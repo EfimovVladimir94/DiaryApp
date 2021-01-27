@@ -19,9 +19,8 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let imageData = currentTask?.imageData
-        if imageData != nil {
-            imageView.image = UIImage(data: imageData!)
+        if let imageData = currentTask?.imageData {
+            imageView.image = UIImage(data: imageData)
         }
         taskNameTextField.text = currentTask?.name
         dateFieldTextField.text = currentTask?.date

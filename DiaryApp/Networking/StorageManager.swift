@@ -25,7 +25,6 @@ class StorageManager {
                 print("error data save into Firebase")
                 return
             }
-            
         }
     }
 }

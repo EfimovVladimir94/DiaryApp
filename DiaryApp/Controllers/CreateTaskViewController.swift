@@ -113,7 +113,7 @@ class CreateTaskViewController: UIViewController {
     
     @objc func saveTask() {
         
-        if (textFieldTaskName.text == "" &&
+        if (textFieldTaskName.text == "" ||
                 datePickerTextField.text == "") {
             alertFields()
             return
