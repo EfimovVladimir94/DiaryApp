@@ -35,21 +35,20 @@ class CreateTaskViewController: UIViewController {
     
     private func initInterfaceObjects() {
         let centrX = Int(self.view.center.x / 2) - 50
-        let centrY = 0
-        self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveTask)),
+        navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveTask)),
                                               animated: true)
-        self.navigationItem.setLeftBarButton(UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.cancelTask)), animated: true)
-        self.view.addSubview(createChooseImageButton(centrX: centrX, centrY: centrY))
-        self.view.addSubview(taskNameTextField(centrX: centrX, centrY: centrY))
-        self.view.addSubview(createDateField())
-        self.view.addSubview(taskDescriptionTextField(centrX: centrX, centrY: centrY))
+        navigationItem.setLeftBarButton(UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.cancelTask)), animated: true)
+        view.addSubview(createChooseImageButton(centrX: centrX, centrY: 0))
+        view.addSubview(taskNameTextField(centrX: centrX, centrY: 0))
+        view.addSubview(createDateField())
+        view.addSubview(taskDescriptionTextField(centrX: centrX, centrY: 0))
     }
     
     private func createChooseImageButton(centrX: Int, centrY: Int) -> UIButton {
         let saveImageButton: UIButton = UIButton(frame: CGRect(x: centrX, y: centrY + 100, width: 300, height: 50))
-        saveImageButton.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        saveImageButton.backgroundColor = UIColor.gray
         saveImageButton.setTitle("Upload new image", for: .normal)
-        saveImageButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+        saveImageButton.setTitleColor(UIColor.black, for: .normal)
         saveImageButton.addTarget(self, action: #selector(self.onTapped), for: .touchUpInside)
         return saveImageButton
     }
@@ -67,9 +66,8 @@ class CreateTaskViewController: UIViewController {
     }
     
     private func createDateField() -> UITextField {
-        let centrX = Int(self.view.center.x / 2) - 50
-        let centrY = 0
-        datePickerTextField = UITextField(frame: CGRect(x: centrX, y: centrY + 260, width: 300, height: 50))
+        datePickerTextField = UITextField(frame: CGRect(x: Int(self.view.center.x / 2) - 50,
+                                                        y: 260, width: 300, height: 50))
         configureTextField(textField: datePickerTextField, placeholderName: "date")
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CreateTaskViewController.viewTapped(gestureRecognizer:)))
         self.view.addGestureRecognizer(tapGesture)
@@ -116,27 +114,28 @@ class CreateTaskViewController: UIViewController {
     @objc func saveTask() {
         
         if (textFieldTaskName.text == "" &&
-            datePickerTextField.text == "") {
+                datePickerTextField.text == "") {
             alertFields()
             return
         }
         
-        let task = DataTask(name: textFieldTaskName.text!,
-                            date: datePickerTextField.text!,
-                            descriptionTask: textFieldTaskDescription.text!,
-                            imageData: taskImage.image?.pngData())
-        let taskFir = DataTaskFir(name: textFieldTaskName.text!,
-                                  date: datePickerTextField.text!,
-                                  descriptionTask: textFieldTaskDescription.text)
-        //к сожалению не удалось реализовать сохранение image в бд
-        //                                  imageData: taskImage.image?.pngData())
-        if checkIfExists(date: task.date) {
-            StorageManager.saveObjectIntoRealm(task)
-            StorageManager.saveObjectIntoFire(taskFir)
+        if let name = textFieldTaskName.text, let date = datePickerTextField.text,
+           let description =  textFieldTaskDescription.text {
             
+            let task = DataTask(name: name,
+                                date: date,
+                                descriptionTask: description,
+                                imageData: taskImage.image?.pngData())
+            
+            let taskFir = DataTaskFir(name: name,
+                                      date: date,
+                                      descriptionTask: description)
+            if checkIfExists(date: task.date) {
+                StorageManager.saveObjectIntoRealm(task)
+                StorageManager.saveObjectIntoFire(taskFir)
+            }
+            dismiss(animated: true)
         }
-        dismiss(animated: true)
-        print("----------task \(task) saved----------")
     }
     
     private func checkIfExists(date: String) -> Bool {
@@ -162,11 +161,8 @@ class CreateTaskViewController: UIViewController {
                 }
             }
         }
-        
         let queue = DispatchQueue(label: "Network")
         monitor.start(queue: queue)
-        
-        
     }
     
     private func alertConnection() {
@@ -183,7 +179,6 @@ class CreateTaskViewController: UIViewController {
         self.present(alert, animated: true)
         return
     }
-    
 }
 
 extension CreateTaskViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

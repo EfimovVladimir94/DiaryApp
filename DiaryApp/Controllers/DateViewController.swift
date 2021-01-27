@@ -80,8 +80,6 @@ class DateViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 let dataTask = DataTaskFir(data: taskData)
                 if dataTask != nil {
                     self.tasksOfFirebase.insert(Mapper.dataTaskFirToDataTask(dataTask: dataTask!))
-                    
-                    print("----------DATA TASK----------: \(dataTask!.name) + \(dataTask!.descriptionTask!) + \(dataTask!.date)")
                 }
             }
     }
