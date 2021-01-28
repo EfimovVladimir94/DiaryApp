@@ -22,6 +22,7 @@
 		CE9AB8A225BEF38A00473DA2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE9AB8A125BEF38A00473DA2 /* GoogleService-Info.plist */; };
 		CE9AB8F525BF10EF00473DA2 /* DataTaskFir.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AB8F425BF10EF00473DA2 /* DataTaskFir.swift */; };
 		CEAD53E425C0BC4300FC2D98 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD53E325C0BC4300FC2D98 /* DetailsViewController.swift */; };
+		CEAD53E925C2B35200FC2D98 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD53E825C2B35200FC2D98 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		CE9AB8A125BEF38A00473DA2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE9AB8F425BF10EF00473DA2 /* DataTaskFir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTaskFir.swift; sourceTree = "<group>"; };
 		CEAD53E325C0BC4300FC2D98 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		CEAD53E825C2B35200FC2D98 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		DF7512E3A6774776F05C9A20 /* Pods-DiaryApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiaryApp.debug.xcconfig"; path = "Target Support Files/Pods-DiaryApp/Pods-DiaryApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				CE9AB89525BDEBDC00473DA2 /* StorageManager.swift */,
+				CEAD53E825C2B35200FC2D98 /* NetworkManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				CE168C3C25BC422400D665AE /* DateViewController.swift in Sources */,
 				CE9AB8F525BF10EF00473DA2 /* DataTaskFir.swift in Sources */,
 				CE168C5325BC488D00D665AE /* DataTasksTableViewCell.swift in Sources */,
+				CEAD53E925C2B35200FC2D98 /* NetworkManager.swift in Sources */,
 				CE478D8725C000B70051047F /* Mapper.swift in Sources */,
 				CE9AB89625BDEBDC00473DA2 /* StorageManager.swift in Sources */,
 				CE168C3825BC422400D665AE /* AppDelegate.swift in Sources */,

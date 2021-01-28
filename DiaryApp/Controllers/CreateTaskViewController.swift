@@ -29,7 +29,11 @@ class CreateTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        monitorNetwork()
+        NetworkManager.monitorNetwork { (success) in
+            if !success {
+                self.alertConnection()
+            }
+        }
         initInterfaceObjects()
     }
     
@@ -145,24 +149,6 @@ class CreateTaskViewController: UIViewController {
     
     @objc private func cancelTask(){
         dismiss(animated: true)
-    }
-    
-    private func monitorNetwork() {
-        let monitor = NWPathMonitor()
-        monitor.pathUpdateHandler = { path in
-            if path.status == .satisfied {
-                DispatchQueue.main.async {
-                    print("internet active")
-                }
-            } else {
-                DispatchQueue.main.async {
-                    self.alertConnection()
-                    print("internet inactive")
-                }
-            }
-        }
-        let queue = DispatchQueue(label: "Network")
-        monitor.start(queue: queue)
     }
     
     private func alertConnection() {
